@@ -98,14 +98,15 @@ function uiToggleDeviceConnected(connected) {
 	    const resultScore = document.querySelector('.js-result-score');
 
         // function
-	    const generatePrize = (members, patterns) => _.map(Array(_.toNumber(members)), member => _.sample(patterns));
+	    const generatePrize = (members, patterns) => _.map(Array(_.toNumber(members)), () => _.sample(patterns));
 
         // event
 	    button.addEventListener('click', () => {
-	        alert(button)
+	        alert(members.value)
 		    if(!members.value) return;
 		    resultPattern = generatePrize(members.value, prizePattern)
 
+		    alert(resultPattern)
 		    TweenMax.to(firstPage, 0.5, { alpha: 0, display: 'none', ease: Power1.easeIn, onComplete: () => {
 				    TweenMax.to(secondPage, 0.5, { alpha: 1, display: 'block', ease: Power1.easeIn});
 				    isRegister = true;
