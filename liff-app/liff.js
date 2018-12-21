@@ -14,7 +14,6 @@ let clickCount = 0;
 
 // 追加した分
 let resultPattern = null;
-let isRegister = false;
 const prizePattern = [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 1000, 1000, 1000, 1000, 2000, 2000, 3000, 5000, 10000];
 let firstPage, secondPage, button, members, result, resultScore;
 
@@ -89,18 +88,13 @@ function uiToggleDeviceConnected(connected) {
 
 	    firstPage = document.querySelector('[data-page="1"]');
 	    secondPage = document.querySelector('[data-page="2"]');
-	    button = document.querySelector('.js-register');
-	    members = document.querySelector('input[name="member"]');
+	    image = document.querySelector('.js-otoshidama-image');
 	    result = document.querySelector('.js-result');
 	    resultScore = document.querySelector('.js-result-score');
         // original
-	    button.addEventListener('click', () => {
-		    if(!members.value) return;
-		    const generatePrize = (members, patterns) => _.map(Array(_.toNumber(members)), () => _.sample(patterns));
-		    resultPattern = generatePrize(members.value, prizePattern);
+	    image.addEventListener('click', () => {
 		    TweenMax.to(firstPage, 0.5, { alpha: 0, display: 'none', ease: Power1.easeIn, onComplete: () => {
 				    TweenMax.to(secondPage, 0.5, { alpha: 1, display: 'block', ease: Power1.easeIn});
-				    isRegister = true;
 			    }});
 	    });
 
@@ -276,9 +270,8 @@ function liffGetButtonStateCharacteristic(characteristic) {
             if (val > 0) {
                 // press
                 uiToggleStateButton(true);
-	            if(!isRegister || !resultPattern.length) return;
 
-	            resultScore.textContent = `${resultPattern.shift()}円`;
+	            resultScore.textContent = `${_.sample(prizePattern)}円`;
 
 	            TweenMax.fromTo(result, 0.75, {scale: 0}, {scale: 1.0, ease: Bounce.easeOut});
             } else {
