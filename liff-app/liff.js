@@ -15,7 +15,7 @@ let clickCount = 0;
 // 追加した分
 let resultPattern = null;
 const prizePattern = [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 1000, 1000, 1000, 1000, 2000, 2000, 3000, 5000, 10000];
-let firstPage, secondPage, image, omikuji, result, resultScore;
+let firstPage, secondPage, image, omikuji, text, result, resultScore;
 
 // -------------- //
 // On window load //
@@ -90,6 +90,7 @@ function uiToggleDeviceConnected(connected) {
 	    secondPage = document.querySelector('[data-page="2"]');
 	    image = document.querySelector('.js-otoshidama-image');
 	    omikuji = document.querySelector('.js-omikuji');
+	    text = document.querySelector('.js-text');
 	    result = document.querySelector('.js-result');
 	    resultScore = document.querySelector('.js-result-score');
         // original
@@ -275,6 +276,7 @@ function liffGetButtonStateCharacteristic(characteristic) {
 	            resultScore.textContent = `${_.sample(prizePattern)}円`;
 
 	            const tl = new TimelineMax();
+	            tl.fromTo(text, 0.5, { opacity : 1}, {opacity : 0})
 	            tl.fromTo(omikuji, 0.25, { rotation: 0}, {rotation: -60})
 	            tl.fromTo(omikuji, 0.25, { rotation: -60}, {rotation: -20})
 	            tl.fromTo(omikuji, 0.25, { rotation: -20}, {rotation: -60})
