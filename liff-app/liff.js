@@ -80,6 +80,48 @@ function uiToggleDeviceConnected(connected) {
         elStatus.innerText = "Device connected";
         // Show controls
         elControls.classList.remove("hidden");
+
+
+        // original
+
+	    let resultPattern = null;
+	    let isRegister = false;
+	    const prizePattern = [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 1000, 1000, 1000, 1000, 2000, 2000, 3000, 5000, 10000];
+
+        // dom
+	    const firstPage = document.querySelector('[data-page="1"]');
+	    const secondPage = document.querySelector('[data-page="2"]');
+	    const button = document.querySelector('.js-register');
+	    const members = document.querySelector('input[name="member"]');
+	    const withdraw = document.querySelector('.js-withdraw');
+	    const result = document.querySelector('.js-result');
+	    const resultScore = document.querySelector('.js-result-score');
+
+        // function
+	    const generatePrize = (members, patterns) => _.map(Array(_.toNumber(members)), member => _.sample(patterns));
+
+        // event
+	    button.addEventListener('click', () => {
+		    if(!members.value) return;
+		    resultPattern = generatePrize(members.value, prizePattern)
+
+		    TweenMax.to(firstPage, 0.5, { alpha: 0, display: 'none', ease: Power1.easeIn, onComplete: () => {
+				    TweenMax.to(secondPage, 0.5, { alpha: 1, display: 'block', ease: Power1.easeIn});
+				    isRegister = true;
+			    }});
+	    });
+
+	    withdraw.addEventListener('click', () => {
+		    if(!isRegister || !resultPattern.length) return;
+
+		    resultScore.textContent = `${resultPattern.shift()}円`;
+
+		    TweenMax.fromTo(result, 0.75, {scale: 0}, {scale: 1.0, ease: Bounce.easeOut});
+
+	    });
+
+	    TweenMax.to(firstPage, 0.5, { alpha: 1, display: 'block', ease: Power1.easeIn});
+
     } else {
         // Show loading animation
         uiToggleLoadingAnimation(true);
@@ -271,46 +313,4 @@ function liffToggleDeviceLedState(state) {
     });
 }
 
-
-// original
-
-let resultPattern = null;
-let isRegister = false;
-const prizePattern = [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 1000, 1000, 1000, 1000, 2000, 2000, 3000, 5000, 10000];
-
-// dom
-const firstPage = document.querySelector('[data-page="1"]');
-const secondPage = document.querySelector('[data-page="2"]');
-const button = document.querySelector('.js-register');
-const members = document.querySelector('input[name="member"]');
-const withdraw = document.querySelector('.js-withdraw');
-const result = document.querySelector('.js-result');
-const resultScore = document.querySelector('.js-result-score');
-
-// function
-
-const generatePrize = (members, patterns) => _.map(Array(_.toNumber(members)), member => _.sample(patterns));
-
-// event
-button.addEventListener('click', () => {
-	if(!members.value) return;
-	resultPattern = generatePrize(members.value, prizePattern)
-
-	TweenMax.to(firstPage, 0.5, { alpha: 0, display: 'none', ease: Power1.easeIn, onComplete: () => {
-			TweenMax.to(secondPage, 0.5, { alpha: 1, display: 'block', ease: Power1.easeIn});
-			isRegister = true;
-		}});
-})
-
-
-withdraw.addEventListener('click', () => {
-	if(!isRegister || !resultPattern.length) return;
-
-	resultScore.textContent = `${resultPattern.shift()}円`;
-
-	TweenMax.fromTo(result, 0.75, {scale: 0}, {scale: 1.0, ease: Bounce.easeOut});
-
-})
-
-TweenMax.to(firstPage, 0.5, { alpha: 1, display: 'block', ease: Power1.easeIn});
 
