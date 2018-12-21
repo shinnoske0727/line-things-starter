@@ -102,6 +102,7 @@ function uiToggleDeviceConnected(connected) {
 
         // event
 	    button.addEventListener('click', () => {
+	        alert(button)
 		    if(!members.value) return;
 		    resultPattern = generatePrize(members.value, prizePattern)
 
