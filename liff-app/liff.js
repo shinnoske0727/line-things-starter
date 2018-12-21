@@ -15,7 +15,7 @@ let clickCount = 0;
 // 追加した分
 let resultPattern = null;
 const prizePattern = [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 1000, 1000, 1000, 1000, 2000, 2000, 3000, 5000, 10000];
-let firstPage, secondPage, button, members, result, resultScore;
+let firstPage, secondPage, image, omikuji, result, resultScore;
 
 // -------------- //
 // On window load //
@@ -89,6 +89,7 @@ function uiToggleDeviceConnected(connected) {
 	    firstPage = document.querySelector('[data-page="1"]');
 	    secondPage = document.querySelector('[data-page="2"]');
 	    image = document.querySelector('.js-otoshidama-image');
+	    omikuji = document.querySelector('.js-omikuji');
 	    result = document.querySelector('.js-result');
 	    resultScore = document.querySelector('.js-result-score');
         // original
@@ -273,7 +274,16 @@ function liffGetButtonStateCharacteristic(characteristic) {
 
 	            resultScore.textContent = `${_.sample(prizePattern)}円`;
 
-	            TweenMax.fromTo(result, 0.75, {scale: 0}, {scale: 1.0, ease: Bounce.easeOut});
+	            const tl = new TimelineMax();
+	            tl.fromTo(omikuji, 0.25, { rotation: 0}, {rotation: -60})
+	            tl.fromTo(omikuji, 0.25, { rotation: -60}, {rotation: -20})
+	            tl.fromTo(omikuji, 0.25, { rotation: -20}, {rotation: -60})
+	            tl.fromTo(omikuji, 0.25, { rotation: -60}, {rotation: -20})
+	            tl.fromTo(omikuji, 0.25, { rotation: -20}, {rotation: -60})
+	            tl.fromTo(omikuji, 0.25, { rotation: -60}, {rotation: -20})
+	            tl.fromTo(omikuji, 1.0, { y: 0}, {y: -300})
+                tl.fromTo(result, 0.75, {scale: 0}, {scale: 1.0, ease: Bounce.easeOut});
+
             } else {
                 // release
                 uiToggleStateButton(false);
