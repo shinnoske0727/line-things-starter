@@ -140,3 +140,14 @@ p {
 .otoshidama-image {
     width: 90%;
 }
+
+.otoshidama-gacha {
+    position: relative;
+}
+.text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 24px;
+    transform: translate(-50%, -50%);
+}
