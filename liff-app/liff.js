@@ -12,6 +12,21 @@ const PSDI_CHARACTERISTIC_UUID  = '26E2B12B-85F0-4F3F-9FDD-91D114270E6E';
 let ledState = false; // true: LED on, false: LED off
 let clickCount = 0;
 
+// 追加した分
+let resultPattern = null;
+let isRegister = false;
+const prizePattern = [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 1000, 1000, 1000, 1000, 2000, 2000, 3000, 5000, 10000];
+
+// dom
+const firstPage = document.querySelector('[data-page="1"]');
+const secondPage = document.querySelector('[data-page="2"]');
+const button = document.querySelector('.js-register');
+const members = document.querySelector('input[name="member"]');
+const withdraw = document.querySelector('.js-withdraw');
+const result = document.querySelector('.js-result');
+const resultScore = document.querySelector('.js-result-score');
+// 追加した分
+
 // -------------- //
 // On window load //
 // -------------- //
@@ -83,30 +98,10 @@ function uiToggleDeviceConnected(connected) {
 
 
         // original
-
-	    let resultPattern = null;
-	    let isRegister = false;
-	    const prizePattern = [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 1000, 1000, 1000, 1000, 2000, 2000, 3000, 5000, 10000];
-
-        // dom
-	    const firstPage = document.querySelector('[data-page="1"]');
-	    const secondPage = document.querySelector('[data-page="2"]');
-	    const button = document.querySelector('.js-register');
-	    const members = document.querySelector('input[name="member"]');
-	    const withdraw = document.querySelector('.js-withdraw');
-	    const result = document.querySelector('.js-result');
-	    const resultScore = document.querySelector('.js-result-score');
-
-        // event
-
 	    button.addEventListener('click', () => {
 		    if(!members.value) return;
 		    const generatePrize = (members, patterns) => _.map(Array(_.toNumber(members)), () => _.sample(patterns));
-		    alert(_)
-		    alert(prizePattern)
 		    resultPattern = generatePrize(members.value, prizePattern);
-
-		    alert(resultPattern)
 		    TweenMax.to(firstPage, 0.5, { alpha: 0, display: 'none', ease: Power1.easeIn, onComplete: () => {
 				    TweenMax.to(secondPage, 0.5, { alpha: 1, display: 'block', ease: Power1.easeIn});
 				    isRegister = true;
@@ -294,6 +289,11 @@ function liffGetButtonStateCharacteristic(characteristic) {
             if (val > 0) {
                 // press
                 uiToggleStateButton(true);
+	            if(!isRegister || !resultPattern.length) return;
+
+	            resultScore.textContent = `${resultPattern.shift()}円`;
+
+	            TweenMax.fromTo(result, 0.75, {scale: 0}, {scale: 1.0, ease: Bounce.easeOut});
             } else {
                 // release
                 uiToggleStateButton(false);
