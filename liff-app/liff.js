@@ -16,7 +16,7 @@ let clickCount = 0;
 let resultPattern = null;
 let isRegister = false;
 const prizePattern = [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 1000, 1000, 1000, 1000, 2000, 2000, 3000, 5000, 10000];
-let firstPage, secondPage, button, members, withdraw, result, resultScore;
+let firstPage, secondPage, button, members, result, resultScore;
 
 // -------------- //
 // On window load //
@@ -91,7 +91,6 @@ function uiToggleDeviceConnected(connected) {
 	    secondPage = document.querySelector('[data-page="2"]');
 	    button = document.querySelector('.js-register');
 	    members = document.querySelector('input[name="member"]');
-	    withdraw = document.querySelector('.js-withdraw');
 	    result = document.querySelector('.js-result');
 	    resultScore = document.querySelector('.js-result-score');
         // original
@@ -103,15 +102,6 @@ function uiToggleDeviceConnected(connected) {
 				    TweenMax.to(secondPage, 0.5, { alpha: 1, display: 'block', ease: Power1.easeIn});
 				    isRegister = true;
 			    }});
-	    });
-
-	    withdraw.addEventListener('click', () => {
-		    if(!isRegister || !resultPattern.length) return;
-
-		    resultScore.textContent = `${resultPattern.shift()}円`;
-
-		    TweenMax.fromTo(result, 0.75, {scale: 0}, {scale: 1.0, ease: Bounce.easeOut});
-
 	    });
 
 	    TweenMax.to(firstPage, 0.5, { alpha: 1, display: 'block', ease: Power1.easeIn});
