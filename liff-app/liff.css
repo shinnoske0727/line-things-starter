@@ -95,3 +95,43 @@ p {
     max-width: 200px;
     font-family: monospace, monospace;
 }
+
+[data-page="1"] {
+    display: none;
+    opacity: 0;
+}
+
+[data-page="2"] {
+    display: none;
+    opacity: 0;
+}
+
+.result {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
+    transform: scale(0);
+}
+
+.result-title {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.result-score {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    text-align: center;
+    font-size: 62px;
+    font-style: italic;
+    font-weight: bold;
+    color: red;
+    transform: translate(-50%, -50%);
+}

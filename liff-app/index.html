@@ -3,7 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <script src=" https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+    <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.core.min.js"></script>
     <script src="liff.js"></script>
     <link rel="stylesheet" type="text/css" href="liff.css" />
   </head>
@@ -49,6 +51,20 @@
         <button id="btn-led-toggle" class="btn btn-led-toggle" onclick="handlerToggleLed()">Switch LED ON</button>
       </p>
       <hr />
+      <div class="otoshidama-register" data-page="1">
+        <div class="member-num">
+          <label for="member">人数 : </label>
+          <input type="number" name="member" id="member" max="10" min="1"/>
+        </div>
+        <button class="js-register">登録</button>
+      </div>
+      <div class="otoshidama-gacha" data-page="2">
+        <div class="result js-result">
+          <div class="result-title">お年玉</div>
+          <div class="result-score js-result-score">1000円</div>
+        </div>
+        <button class="js-withdraw">おみくじを引く</button>
+      </div>
     </div>
   </body>
 
