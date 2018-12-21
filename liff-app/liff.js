@@ -102,9 +102,10 @@ function uiToggleDeviceConnected(connected) {
 
         // event
 	    button.addEventListener('click', () => {
-	        alert(members.value)
 		    if(!members.value) return;
-		    resultPattern = generatePrize(members.value, prizePattern)
+		    alert(JSON.stringify(generatePrize))
+		    alert(prizePattern)
+		    resultPattern = generatePrize(members.value, prizePattern);
 
 		    alert(resultPattern)
 		    TweenMax.to(firstPage, 0.5, { alpha: 0, display: 'none', ease: Power1.easeIn, onComplete: () => {
