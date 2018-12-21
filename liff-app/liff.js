@@ -87,7 +87,6 @@ function uiToggleDeviceConnected(connected) {
         // Show controls
         elControls.classList.remove("hidden");
 
-
 	    firstPage = document.querySelector('[data-page="1"]');
 	    secondPage = document.querySelector('[data-page="2"]');
 	    button = document.querySelector('.js-register');

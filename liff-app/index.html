@@ -17,7 +17,7 @@
       <span id="status" class="inactive">Device disconnected</span>
     </p>
     <hr />
-    <div id="controls" class="hidden">
+    <div id="controls" class="hidden" style="display: none;">
       <!-- Device Info Table -->
       <table class="device-info-table">
         <tr>
@@ -43,12 +43,10 @@
           <td class="device-info-cell device-info-val" id="click-count">0</td>
         </tr>
       </table>
-      <hr />
       <!-- Toggle LED -->
-      <p>
+      <p style="display: none">
         <button id="btn-led-toggle" class="btn btn-led-toggle" onclick="handlerToggleLed()">Switch LED ON</button>
       </p>
-      <hr />
       <div class="otoshidama-register" data-page="1">
         <div class="member-num">
           <label for="member">人数 : </label>
