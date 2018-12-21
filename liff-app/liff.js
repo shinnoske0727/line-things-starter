@@ -16,16 +16,7 @@ let clickCount = 0;
 let resultPattern = null;
 let isRegister = false;
 const prizePattern = [500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 1000, 1000, 1000, 1000, 2000, 2000, 3000, 5000, 10000];
-
-// dom
-const firstPage = document.querySelector('[data-page="1"]');
-const secondPage = document.querySelector('[data-page="2"]');
-const button = document.querySelector('.js-register');
-const members = document.querySelector('input[name="member"]');
-const withdraw = document.querySelector('.js-withdraw');
-const result = document.querySelector('.js-result');
-const resultScore = document.querySelector('.js-result-score');
-// 追加した分
+let firstPage, secondPage, button, members, withdraw, result, resultScore;
 
 // -------------- //
 // On window load //
@@ -97,6 +88,13 @@ function uiToggleDeviceConnected(connected) {
         elControls.classList.remove("hidden");
 
 
+	    firstPage = document.querySelector('[data-page="1"]');
+	    secondPage = document.querySelector('[data-page="2"]');
+	    button = document.querySelector('.js-register');
+	    members = document.querySelector('input[name="member"]');
+	    withdraw = document.querySelector('.js-withdraw');
+	    result = document.querySelector('.js-result');
+	    resultScore = document.querySelector('.js-result-score');
         // original
 	    button.addEventListener('click', () => {
 		    if(!members.value) return;
