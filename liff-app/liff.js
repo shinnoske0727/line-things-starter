@@ -97,13 +97,12 @@ function uiToggleDeviceConnected(connected) {
 	    const result = document.querySelector('.js-result');
 	    const resultScore = document.querySelector('.js-result-score');
 
-        // function
-	    const generatePrize = (members, patterns) => _.map(Array(_.toNumber(members)), () => _.sample(patterns));
-
         // event
+
 	    button.addEventListener('click', () => {
 		    if(!members.value) return;
-		    alert(JSON.stringify(generatePrize))
+		    const generatePrize = (members, patterns) => _.map(Array(_.toNumber(members)), () => _.sample(patterns));
+		    alert(_)
 		    alert(prizePattern)
 		    resultPattern = generatePrize(members.value, prizePattern);
 
