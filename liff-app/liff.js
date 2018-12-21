@@ -285,7 +285,7 @@ function liffGetButtonStateCharacteristic(characteristic) {
 	            tl.fromTo(omikuji, 0.25, { rotation: -20}, {rotation: -60})
 	            tl.fromTo(omikuji, 0.25, { rotation: -60}, {rotation: -20})
 	            tl.fromTo(omikuji, 1.0, { y: 0}, {y: -600})
-	            tl.fromTo(omikuji, 0.01, { opacity : 1}, {opacity : 0})
+	            tl.set(omikuji, {opacity : 0, rotation: 0})
                 tl.fromTo(result, 0.75, {scale: 0}, {scale: 1.0, ease: Bounce.easeOut});
 
             } else {
